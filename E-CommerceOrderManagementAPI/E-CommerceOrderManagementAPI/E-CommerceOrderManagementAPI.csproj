@@ -21,8 +21,6 @@
   <ItemGroup>
     <Folder Include="Application\Interfaces\" />
     <Folder Include="Application\Services\" />
-    <Folder Include="Contracts\Responses\" />
-    <Folder Include="Contracts\Requests\" />
     <Folder Include="Infrastructure\Notifications\" />
     <Folder Include="Infrastructure\Payments\" />
     <Folder Include="Infrastructure\Persistence\" />
