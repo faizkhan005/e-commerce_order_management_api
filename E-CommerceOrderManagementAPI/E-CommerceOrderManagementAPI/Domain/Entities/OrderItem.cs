@@ -1,10 +1,15 @@
 ﻿using E_CommerceOrderManagementAPI.Domain.Exceptions;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_CommerceOrderManagementAPI.Domain.Entities
 {
     public class OrderItem
     {
+        [Key]
+        public int OrderItemID { get; set; }
         public Guid ProductID { get; private set; }
+        public Guid OrderID { get; private set; }
         public string Name { get; private set; } = string.Empty;
         public int Qty 
         {
@@ -13,11 +18,13 @@ namespace E_CommerceOrderManagementAPI.Domain.Entities
         }
         public decimal UnitPrice { get; private set; }
         public decimal ListPrice { get; private set; }
+        [NotMapped]
         public decimal LineTotal 
         {
             get => Qty * ListPrice;
         }
-
+        //Navigation Property for EFCore
+        public Order Order { get; set; }
         public void SetQty(int newQty) 
         {
             if(newQty < 0)
