@@ -62,7 +62,7 @@ namespace E_CommerceOrderManagementAPI.Domain.Entities
 
         public void UpdatePaymentStatus(PaymentStatus newStatus) 
         {
-            if (!_orderItems.Any())
+            if (_orderItems.Count == 0)
                 throw new DomainException("Cannot pay for an empty order.");
             if (this.Status is OrderStatus.Cancelled)
                 throw new DomainException("Cannot update payment status of a cancelled order.");
@@ -78,7 +78,7 @@ namespace E_CommerceOrderManagementAPI.Domain.Entities
 
         public void MarkAsPaid()
         {
-            if (!_orderItems.Any())
+            if (_orderItems.Count == 0)
                 throw new DomainException("Cannot pay for an empty order.");
             if (Status == OrderStatus.Cancelled)
                 throw new DomainException("Cancelled order cannot be paid.");
