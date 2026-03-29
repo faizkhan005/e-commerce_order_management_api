@@ -1,5 +1,7 @@
 ﻿using E_CommerceOrderManagementAPI.Domain.Enums;
 using E_CommerceOrderManagementAPI.Domain.Exceptions;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_CommerceOrderManagementAPI.Domain.Entities
 {
@@ -7,6 +9,7 @@ namespace E_CommerceOrderManagementAPI.Domain.Entities
     {
         private List<OrderItem> _orderItems = [];
 
+        [Key]
         public Guid OrderID 
         {
             get;
@@ -22,7 +25,10 @@ namespace E_CommerceOrderManagementAPI.Domain.Entities
         public IReadOnlyCollection<OrderItem> OrderItem => _orderItems.AsReadOnly();
 
         //finds linetotal from the order items and sums them up to get the total for the order
+        [NotMapped]
         public decimal Total => _orderItems.Sum(item => item.LineTotal);
+        //Navigation Property for EFCore
+        public Customer Customer { get; private set; }
 
         public Order(Guid customerID)
         {
@@ -62,7 +68,7 @@ namespace E_CommerceOrderManagementAPI.Domain.Entities
 
         public void UpdatePaymentStatus(PaymentStatus newStatus) 
         {
-            if (!_orderItems.Any())
+            if (_orderItems.Count == 0)
                 throw new DomainException("Cannot pay for an empty order.");
             if (this.Status is OrderStatus.Cancelled)
                 throw new DomainException("Cannot update payment status of a cancelled order.");
@@ -78,12 +84,20 @@ namespace E_CommerceOrderManagementAPI.Domain.Entities
 
         public void MarkAsPaid()
         {
-            if (!_orderItems.Any())
+            if (_orderItems.Count == 0)
                 throw new DomainException("Cannot pay for an empty order.");
             if (Status == OrderStatus.Cancelled)
                 throw new DomainException("Cancelled order cannot be paid.");
             Status = OrderStatus.Paid;
             PaymentStatus = PaymentStatus.Paid;
+        }
+
+        //for update
+        public void Copy(Order newOrder) 
+        {
+            this.Status = newOrder.Status;
+            this.PaymentStatus = newOrder.PaymentStatus;
+
         }
     }
 }
