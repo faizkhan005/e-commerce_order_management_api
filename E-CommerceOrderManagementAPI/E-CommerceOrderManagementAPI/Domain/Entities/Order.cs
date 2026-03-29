@@ -91,5 +91,13 @@ namespace E_CommerceOrderManagementAPI.Domain.Entities
             Status = OrderStatus.Paid;
             PaymentStatus = PaymentStatus.Paid;
         }
+
+        //for update
+        public void Copy(Order newOrder) 
+        {
+            this.Status = newOrder.Status;
+            this.PaymentStatus = newOrder.PaymentStatus;
+
+        }
     }
 }

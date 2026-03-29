@@ -1,9 +1,10 @@
-﻿using E_CommerceOrderManagementAPI.Domain.Entities;
+﻿using E_CommerceOrderManagementAPI.Application.Interfaces;
+using E_CommerceOrderManagementAPI.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_CommerceOrderManagementAPI.Infrastructure.Persistence
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : DbContext, IAppDbContext
     {
         //Independent
         public DbSet<Customer> Customers { get; set; }
@@ -36,7 +37,7 @@ namespace E_CommerceOrderManagementAPI.Infrastructure.Persistence
 
             modelBuilder.Entity<Order>()
                 .Navigation(O => O.OrderItem)
-                .HasField("_orderItem");
+                .HasField("_orderItems");
 
             modelBuilder.Entity<Order>()
                 .Ignore(o => o.Total);

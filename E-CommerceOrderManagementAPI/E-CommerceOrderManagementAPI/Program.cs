@@ -1,3 +1,4 @@
+using E_CommerceOrderManagementAPI.Application.Interfaces;
 using E_CommerceOrderManagementAPI.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IAppDbContext, AppDbContext>();
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
