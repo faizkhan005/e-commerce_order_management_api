@@ -1,9 +1,12 @@
 using E_CommerceOrderManagementAPI.Application.Interfaces;
 using E_CommerceOrderManagementAPI.Application.Services;
+using E_CommerceOrderManagementAPI.Contracts.Validators;
 using E_CommerceOrderManagementAPI.Domain.Exceptions;
 using E_CommerceOrderManagementAPI.Infrastructure.Notifications;
 using E_CommerceOrderManagementAPI.Infrastructure.Payments;
 using E_CommerceOrderManagementAPI.Infrastructure.Persistence;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
@@ -15,6 +18,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderRequestValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
 
 builder.Services.AddScoped<IAppDbContext, AppDbContext>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();
