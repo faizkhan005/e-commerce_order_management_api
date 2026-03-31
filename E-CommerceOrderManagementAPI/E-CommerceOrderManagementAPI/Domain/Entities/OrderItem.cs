@@ -32,9 +32,10 @@ namespace E_CommerceOrderManagementAPI.Domain.Entities
             Qty += newQty;
         }
 
-        public OrderItem(Guid productID, string name, decimal unitPrice, decimal listPrice)
-        {
+        public OrderItem(Guid productID,Guid orderID, string name, decimal unitPrice, decimal listPrice)
+        {   
             ProductID = productID;
+            OrderID = orderID;
             Name = name;
             UnitPrice = unitPrice;
             ListPrice = listPrice;
