@@ -12,6 +12,6 @@ namespace E_CommerceOrderManagementAPI.Contracts.Responses
 
         public List<OrderItemResponse> OrderedItems { get; set; }
 
-        public int Total { get; set; }
+        public decimal Total { get; set; }
     }
 }

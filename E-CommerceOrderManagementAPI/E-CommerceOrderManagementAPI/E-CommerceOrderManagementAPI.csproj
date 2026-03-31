@@ -16,12 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Application\Services\" />
-    <Folder Include="Infrastructure\Notifications\" />
-    <Folder Include="Infrastructure\Payments\" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.13.18" />
   </ItemGroup>
 
 </Project>
