@@ -2,6 +2,6 @@
 {
     public interface INotificationService
     {
-        public Task SendOrderStatusUpdateAsync(Guid orderId, string status, string message);
+        public Task GenerateOrderNotification(Guid orderId,Guid customerID, string status, string message);
     }
 }

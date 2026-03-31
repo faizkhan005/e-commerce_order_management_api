@@ -18,10 +18,4 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\Services\" />
-    <Folder Include="Infrastructure\Notifications\" />
-    <Folder Include="Infrastructure\Payments\" />
-  </ItemGroup>
-
 </Project>

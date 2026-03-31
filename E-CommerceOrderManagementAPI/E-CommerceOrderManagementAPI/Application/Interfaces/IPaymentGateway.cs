@@ -3,6 +3,7 @@
     public interface IPaymentGateway
     {
 
-        public Task UpdatePaymentStatusAsync(Guid orderId, string paymentStatus);
+        public Task<bool> ProcessPayment(Guid orderId, decimal lineTotal);
     }
 }
+    

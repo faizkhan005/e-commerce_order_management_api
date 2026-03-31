@@ -6,7 +6,7 @@ namespace E_CommerceOrderManagementAPI.Application.Interfaces
     public interface IOrderService
     {
 
-        public Task CreateOrderAsync(CreateOrderRequest orderDto);
+        public Task<OrderResponse> CreateOrderAsync(CreateOrderRequest orderDto);
 
         public Task<OrderResponse> GetOrderByIdAsync(Guid orderId);
 
