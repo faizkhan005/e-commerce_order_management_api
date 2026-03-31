@@ -40,7 +40,7 @@ namespace E_CommerceOrderManagementAPI.Application.Services
         {
             OrderResponse response = new();
             Order newOrder = new(orderDto.CustomerID);
-            foreach (var item in orderDto.OrderdedItems)
+            foreach (var item in orderDto.OrderedItems)
             {
                 // create orderItems;
                 Product product = await _inventoryService.GetProductByIdAsync(item.ProductID);

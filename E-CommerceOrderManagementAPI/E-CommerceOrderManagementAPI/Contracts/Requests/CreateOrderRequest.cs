@@ -4,6 +4,6 @@
     {
         public Guid CustomerID { get; set; }
 
-        public List<AddOrderItemRequest> OrderdedItems { get; set; } = [];
+        public List<AddOrderItemRequest> OrderedItems { get; set; } = [];
     }
 }
